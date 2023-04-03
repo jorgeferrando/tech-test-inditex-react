@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { SearchPodcastView } from './views/SearchPodcastView'
 import { PodcastView } from './views/PodcastView';
 import { EpisodeView } from './views/EpisodeView';
+import { MainLayout } from './layouts/MainLayout';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -21,11 +22,13 @@ function App() {
   return (
     <BrowserRouter>
       <QueryClientProvider client={queryClient}>
-        <Routes>
-          <Route path="/" element={<SearchPodcastView />}></Route>
-          <Route path="/podcast/:podcastId" element={<PodcastView />}></Route>
-          <Route path="/podcast/:podcastId/episode/:episodeId" element={<EpisodeView />}></Route>
-        </Routes>
+      <MainLayout>
+          <Routes>
+              <Route path="/" element={<SearchPodcastView />}></Route>
+              <Route path="/podcast/:podcastId" element={<PodcastView />}></Route>
+              <Route path="/podcast/:podcastId/episode/:episodeId" element={<EpisodeView />}></Route>
+          </Routes>
+        </MainLayout>
       </QueryClientProvider>
     </BrowserRouter>
   );
