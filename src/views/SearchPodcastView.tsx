@@ -4,27 +4,23 @@ import { PodcastItem } from '../components/PodcastItem';
 import fetchPodcastList from '../repositories/fetchPodcastList';
 import { useQuery } from '@tanstack/react-query';
 import { filterPodcasts } from '../helpers/fiterpodcasts.helper';
-import { LoadingContext } from '../contexts/loadingContext';
+import { useDispatch } from 'react-redux';
+import { setLoading} from '../stores/podcast.slice'
 
 export const SearchPodcastView = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const results = useQuery(["podcasts"], fetchPodcastList);
-    const [loading, setLoading] = useContext(LoadingContext);
-    
-    // update loading context
-    useEffect(() => {
-      if (results.isLoading) {
-        setLoading(true)
-      } else {
-        setLoading(false)
-      }
-    }, [results]);
+    const dispatch = useDispatch();
     
     // update podcasts on change
     const podcasts = useMemo(() => {
-      if (results.isLoading) return [];
+      dispatch(setLoading(true))
+      if (results.isLoading) {
+        return [];
+      }
       const data = results?.data?.contents || "[]";
       const feed = JSON.parse(data);
+      dispatch(setLoading(false))
       return filterPodcasts(feed.feed.entry, searchTerm);
     }, [results, searchTerm]);
     

@@ -1,11 +1,11 @@
-import { Fragment, useContext } from 'react';
+import { Fragment } from 'react';
 import './MainLayout.sass'
-import { LoadingContext } from '../contexts/loadingContext';
+import { useSelector } from 'react-redux';
 type Props = {
     children: JSX.Element
 }
 export const MainLayout = ({ children } : Props) => {
-    const [loading, _] = useContext(LoadingContext);
+    const loading = useSelector(state => state.podcasts.loading);
     return (
         <Fragment>
             <nav className="navigation-bar">

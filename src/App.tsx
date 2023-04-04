@@ -6,7 +6,8 @@ import { SearchPodcastView } from './views/SearchPodcastView'
 import { PodcastView } from './views/PodcastView';
 import { EpisodeView } from './views/EpisodeView';
 import { MainLayout } from './layouts/MainLayout';
-import { LoadingContext } from './contexts/loadingContext';
+import { Provider } from 'react-redux';
+import store from './stores/store';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -23,7 +24,7 @@ function App() {
   return (
     <BrowserRouter>
       <QueryClientProvider client={queryClient}>
-        <LoadingContext.Provider value={loadingState}>
+        <Provider store={store}>
           <MainLayout>
             <Routes>
                 <Route path="/" element={<SearchPodcastView />}></Route>
@@ -31,7 +32,7 @@ function App() {
                 <Route path="/podcast/:podcastId/episode/:episodeId" element={<EpisodeView />}></Route>
             </Routes>
           </MainLayout>
-        </LoadingContext.Provider>
+        </Provider>
       </QueryClientProvider>
     </BrowserRouter>
   );
