@@ -4,17 +4,12 @@ type QueryKey = {
 };
 
 const fetchPodcastList = async ({ queryKey }: QueryKey) => {
-  const query = queryKey[0];
-
-  if (!query) {
-    return [];
-  }
-
   //   const apiRes = await fetch(
   //     `https://api.allorigins.win/get?url=${encodeURIComponent(
   //       "https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/json"
   //     )}`
   //   );
+  console.log("fetching data...");
   const apiRes = await fetch("src/assets/data.json");
 
   if (!apiRes.ok) {
