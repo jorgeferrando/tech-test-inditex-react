@@ -25,7 +25,7 @@ export const SearchPodcastView = () => {
                 <input className="searchbar__input" type="text" onChange={event => {setSearchTerm(event.target.value)}}/>
             </section>
             <section className="podcastlist">
-                {(!podcasts.length) ? (<h2>No Podcasts found!</h2>):(
+                {(!podcasts.length) ? (<h2>{isLoading ? 'Loading podcasts...' : 'No Podcasts found!'}</h2>):(
                     podcasts.map(podcast =>(
                         <PodcastItem podcast={podcast} key={podcast.id.attributes['im:id']} />
                     ))

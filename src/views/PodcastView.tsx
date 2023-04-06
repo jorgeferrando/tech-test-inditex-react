@@ -18,7 +18,7 @@ export const PodcastView = () => {
 
     useEffect(() => {
       dispatch(setLoading(episodes.isLoading || podcasts.isLoading))
-    },[episodes.isLoading, episodes.isLoading])
+    },[episodes.isLoading, podcasts.isLoading])
     
     const episodesList = useMemo(() => episodes.data ? episodes.data : null, [episodes.data]);
     const podcast = useMemo(() => {
