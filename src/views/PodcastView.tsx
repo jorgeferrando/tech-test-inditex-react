@@ -5,7 +5,7 @@ import { useEffect, useMemo } from 'react';
 import { setLoading } from '../stores/podcast.slice';
 import fetchPodcastById from '../repositories/fetchPodcastsById';
 import { PodcastDetails } from '../components/PodcastDetail';
-import { PodcastInfo } from '../components/PodcastInfo';
+import { EpisodesList } from '../components/EpisodesList';
 
 import './PodcastView.sass';
 import fetchPodcastList from '../repositories/fetchPodcastList';
@@ -19,7 +19,7 @@ export const PodcastView = () => {
     useEffect(() => {
       dispatch(setLoading(isLoading || podcastList.isLoading))
     },[isLoading, podcastList.isLoading])
-    const podcastInfo = useMemo(() => data ? data : null, [data]);
+    const episodesList = useMemo(() => data ? data : null, [data]);
     // in case we go direct insde the podcast view
     const podcast = useMemo(() => {
       return podcastFromStore || (
@@ -27,9 +27,9 @@ export const PodcastView = () => {
       );
     }, [podcastFromStore, podcastList.data])
     return (
-        <div className="details-layout">
+        <div className="entitylayout">
           {podcast && <PodcastDetails podcast={podcast}></PodcastDetails>}
-          {podcastInfo && <PodcastInfo podcastInfo={podcastInfo}></PodcastInfo>}
+          {episodesList && <EpisodesList episodesList={episodesList}></EpisodesList>}
         </div>
     )
 }

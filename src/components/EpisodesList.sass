@@ -1,0 +1,35 @@
+@use '../styles/variables'
+@use '../styles/mixins'
+
+.episodes
+    flex: 0 0 calc(100% - variables.$podcast-details-width)
+    width: calc(100% - variables.$podcast-details-width)
+    h2
+        @include mixins.shadow()
+        @include mixins.subtitle()        
+        margin-bottom: 2rem
+    &__container
+        @include mixins.shadow()
+        padding: variables.$default-padding
+        padding-top: (variables.$default-padding * 2)
+        table
+            width: 100%
+            padding: 1rem
+            .align-left
+                text-align: left
+            .align-right
+                text-align: right
+            .align-center
+                text-align: center
+            tbody
+                tr:nth-child(odd)
+                    background-color: #eee
+            th
+                border-bottom: 2px solid #ddd
+                padding: calc(variables.$default-padding / 2)
+            td
+                padding: calc(variables.$default-padding / 2)
+                a
+                    color: variables.$primary-color
+                    &:hover
+                        text-decoration: underline

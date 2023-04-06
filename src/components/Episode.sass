@@ -1,12 +1,11 @@
-.episodes-container
+@use '../styles/variables'
+@use '../styles/mixins'
+
+.episodes
     h2
-        padding-bottom: 1rem
-        font-size: 1.3rem
-        font-weight: 600
-    .description
-        font-style: italic
-        line-height: 1.5
-        letter-spacing: 0.04rem
+        @include mixins.subtitle()
+    &__description
+        @include mixins.description()
     audio
-        margin-top: 1rem
+        margin-top: variables.$default-margin
         width: 100%

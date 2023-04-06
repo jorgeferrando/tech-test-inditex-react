@@ -1,29 +1,29 @@
-.podcast-item
+@use '../styles/variables'
+@use '../styles/mixins'
+
+.podcastitem
+    @include mixins.shadow()
     position: relative
-    box-shadow: 0px 3px 6px 0px rgba(0,0,0,0.48)
     display: flex
     flex-direction: column
     padding: 1rem
-    height: 100%
+    height: 120%
     margin-top: 2rem
     justify-content: flex-end
-    & > img
+    > &__image
         position: absolute
         left: 50%
-        transform: translateX(-50%) translateY(-100%)
+        transform: translateX(-50%) translateY(-70%)
         border-radius: 50%
-    & > .podcast-meta
-        .title
+        height: variables.$default-font-size * 5
+    > &__meta
+        & > *
+            text-align: center
+            width: calc(100%)
+        & > &__title
             text-transform: uppercase
-            font-weight: 600
-            text-align: center
-            width: calc(100%)
-            overflow: hidden
-            white-space: nowrap
-            text-overflow: ellipsis
-        .author
-            text-align: center
-            width: calc(100%)
-            overflow: hidden
-            white-space: nowrap
-            text-overflow: ellipsis
+            font-weight: variables.$default-font-weight
+            @include mixins.ellipsis()
+            
+        > &__author
+            @include mixins.ellipsis()

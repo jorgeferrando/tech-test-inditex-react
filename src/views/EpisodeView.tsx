@@ -7,6 +7,7 @@ import { useEffect, useMemo } from 'react';
 import { setLoading } from '../stores/podcast.slice';
 import { Episode } from '../components/Episode';
 import fetchEpisodeById from '../repositories/fetchEpisodeById';
+
 export const EpisodeView = () => {
     const dispatch = useDispatch();
     const { podcastId, episodeId } = useParams();
@@ -24,7 +25,7 @@ export const EpisodeView = () => {
       );
     }, [podcastFromStore, episodeList.data])
     return (
-        <div className="details-layout">
+        <div className="entitylayout">
           {podcast && <PodcastDetails podcast={podcast}></PodcastDetails>}
           {episode && <Episode episode={episode}></Episode>}
         </div>

@@ -16,9 +16,9 @@ type Props = {
 export const Episode = ({episode} : Props) => {
     const description = replaceNewlinesWithBr(convertUrlsToLinks(episode.description));
     return (
-        <section className="episodes-container">
+        <section className="episodes">
             <h2>{episode.trackName}</h2>
-            <div className="description"
+            <div className="episodes__description"
                  dangerouslySetInnerHTML={{__html:dompurify.sanitize(description)}}>
             </div>
             <audio controls>

@@ -1,33 +1,19 @@
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux';
+import { duration, formatDate } from '../helpers/format.helper';
 
-import './PodcastInfo.sass'
+import './EpisodesList.sass'
 
-type PodcastInfoProps = {
-    podcastInfo: any;
+type Props = {
+    episodesList: any;
 };
 
-function formatDate(date: Date) {
-    return `${date.getDay()}/${date.getMonth()}/${date.getFullYear()}`;
-}
-
-function duration(milliseconds: number) : string {
-    const totalSeconds = Math.floor(milliseconds / 1000);
-    const hours = Math.floor(totalSeconds / 3600);
-    const minutes = Math.floor((totalSeconds % 3600) / 60);
-  
-    const formattedHours = hours < 10 ? `0${hours}` : hours.toString();
-    const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes.toString();
-  
-    return `${formattedHours}:${formattedMinutes}`;
-  }
-
-export const PodcastInfo = ({podcastInfo} : PodcastInfoProps) => {
+export const EpisodesList = ({episodesList} : Props) => {
     const dispatch = useDispatch()
     return (
-        <section className="podcast-info">
-            <h2>{podcastInfo[0].collectionName}</h2>
-            <section className="episodes-container">
+        <section className="episodes">
+            <h2>{episodesList[0].collectionName}</h2>
+            <section className="episodes__container">
                 <table>
                     <thead>
                         <tr>
@@ -37,7 +23,7 @@ export const PodcastInfo = ({podcastInfo} : PodcastInfoProps) => {
                         </tr>
                     </thead>
                     <tbody>
-                    {podcastInfo && podcastInfo.slice(1).map((episode: any) => {
+                    {episodesList && episodesList.slice(1).map((episode: any) => {
                             return (
                                 <tr key={episode.trackId}>
                                     <td className="align-left">
