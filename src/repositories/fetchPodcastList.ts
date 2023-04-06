@@ -17,6 +17,7 @@ const fetchPodcastList = async ({ queryKey }: QueryKey) => {
 
   const contents = result?.contents || "[]";
   const data = JSON.parse(contents);
+  console.log(JSON.parse(contents));
   return data?.feed?.entry || [];
 };
 
