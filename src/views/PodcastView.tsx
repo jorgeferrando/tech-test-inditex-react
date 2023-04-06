@@ -8,16 +8,24 @@ import { PodcastDetails } from '../components/PodcastDetail';
 import { PodcastInfo } from '../components/PodcastInfo';
 
 import './PodcastView.sass';
+import fetchPodcastList from '../repositories/fetchPodcastList';
 
 export const PodcastView = () => {
     const dispatch = useDispatch();
     const { podcastId } = useParams();
+    const podcastList = useQuery(["podcasts"], fetchPodcastList);
     const {data, isLoading} = useQuery(["podcast", podcastId], fetchPodcastById);
-    const podcast = useSelector(state => state.podcasts.selectedPodcast);
+    const podcastFromStore = useSelector(state => state.podcasts.selectedPodcast);
     useEffect(() => {
-      dispatch(setLoading(isLoading))
-    },[isLoading])
-    const podcastInfo = useMemo(() => data ? data : null, [data])
+      dispatch(setLoading(isLoading || podcastList.isLoading))
+    },[isLoading, podcastList.isLoading])
+    const podcastInfo = useMemo(() => data ? data : null, [data]);
+    // in case we go direct insde the podcast view
+    const podcast = useMemo(() => {
+      return podcastFromStore || (
+        podcastList?.data?.find((p: any) => p.id.attributes['im:id'] === podcastId) || null
+      );
+    }, [podcastFromStore, podcastList.data])
     return (
         <div className="details-layout">
           {podcast && <PodcastDetails podcast={podcast}></PodcastDetails>}
