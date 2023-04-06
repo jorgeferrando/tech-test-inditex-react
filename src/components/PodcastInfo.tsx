@@ -1,6 +1,5 @@
 import {Link} from 'react-router-dom'
 import { useDispatch } from 'react-redux';
-import { selectEpisode } from '../stores/podcast.slice';
 
 import './PodcastInfo.sass'
 
@@ -41,7 +40,7 @@ export const PodcastInfo = ({podcastInfo} : PodcastInfoProps) => {
                     {podcastInfo && podcastInfo.slice(1).map((episode: any) => {
                             return (
                                 <tr key={episode.episodeGuid}>
-                                    <td className="align-left" onClick={() => dispatch(selectEpisode(episode))}>
+                                    <td className="align-left">
                                         <Link to={`episode/${episode.episodeGuid}`}>{episode.trackName}</Link>
                                     </td>
                                     <td className="align-left">{formatDate(new Date(episode.releaseDate))}</td>
