@@ -1,5 +1,5 @@
 export const filterPodcasts = (podcasts: any[], searchTerm: string) => {
-  const x = podcasts.filter((podcast: any) => {
+  return podcasts.filter((podcast: any) => {
     if (searchTerm === "") {
       return true;
     } else if (
@@ -14,6 +14,4 @@ export const filterPodcasts = (podcasts: any[], searchTerm: string) => {
     }
     return false;
   });
-  console.log(x.length);
-  return x;
 };
