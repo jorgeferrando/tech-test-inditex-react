@@ -39,9 +39,9 @@ export const PodcastInfo = ({podcastInfo} : PodcastInfoProps) => {
                     <tbody>
                     {podcastInfo && podcastInfo.slice(1).map((episode: any) => {
                             return (
-                                <tr key={episode.episodeGuid}>
+                                <tr key={episode.trackId}>
                                     <td className="align-left">
-                                        <Link to={`episode/${episode.episodeGuid}`}>{episode.trackName}</Link>
+                                        <Link to={`episode/${episode.trackId}`}>{episode.trackName}</Link>
                                     </td>
                                     <td className="align-left">{formatDate(new Date(episode.releaseDate))}</td>
                                     <td className="align-center">{duration(episode.trackTimeMillis)}</td>
