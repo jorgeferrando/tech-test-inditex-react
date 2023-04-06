@@ -14,7 +14,6 @@ const fetchEpisodes = async ({ queryKey }: QueryKey) => {
     )}`,
     `podcast-${id}`
   );
-  console.log(JSON.parse(result?.contents));
   return JSON.parse(result?.contents || "null")?.results || null;
 };
 

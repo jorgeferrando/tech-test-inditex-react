@@ -14,7 +14,6 @@ const fetchPodcastList = async ({ queryKey }: QueryKey) => {
     )}`,
     "podcastList"
   );
-  //const apiRes = await fetch("src/assets/data.json");
 
   const contents = result?.contents || "[]";
   const data = JSON.parse(contents);
