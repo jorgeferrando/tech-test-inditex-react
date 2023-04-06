@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useQuery } from '@tanstack/react-query';
 import { useEffect, useMemo } from 'react';
 import { setLoading } from '../stores/podcast.slice';
-import fetchEpisodes from '../repositories/fetchPodcastsById';
+import fetchEpisodes from '../repositories/fetchEpisodes';
 import { PodcastDetails } from '../components/PodcastDetail';
 import { EpisodesList } from '../components/EpisodesList';
 
