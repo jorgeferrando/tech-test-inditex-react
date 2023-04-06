@@ -10,11 +10,11 @@ export const PodcastDetails = ({podcast} : PodcastDetailsProps) => {
     return (
         <section className='podcastdetails'>
             <section className="podcastdetails__container">
-                <Link to={`/podcast/${id}`}>
+                <Link to={`/podcast/${id}`} data-testid="link-to-podcast">
                     <img src={podcast['im:image'][2].label} />
                 </Link>
                 <section className="podcastdetails__container__meta">
-                    <div className="podcastdetails__container__meta__title"><Link to={`/podcast/${id}`}>{podcast['im:name'].label}</Link></div>
+                    <div className="podcastdetails__container__meta__title"><Link data-testid="link-to-podcast" to={`/podcast/${id}`}>{podcast['im:name'].label}</Link></div>
                     <div className="podcastdetails__container__meta__artist">by {podcast['im:artist'].label}</div>
                 </section>
                 <section className="podcastdetails__container__description">
