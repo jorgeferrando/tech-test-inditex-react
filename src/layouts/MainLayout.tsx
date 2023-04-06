@@ -1,6 +1,7 @@
 import { Fragment } from 'react';
 import './MainLayout.sass'
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 type Props = {
     children: JSX.Element
 }
@@ -9,8 +10,8 @@ export const MainLayout = ({ children } : Props) => {
     return (
         <Fragment>
             <nav className="navigation-bar">
-                <h1>Podcaster</h1>
-                <div>{loading && 'Loading...'}</div>
+                <h1><Link to="/">Podcaster</Link></h1>
+                {loading && <div className="loader"></div>}
             </nav>
             <main>
                 { children }
