@@ -9,20 +9,14 @@ import { setLoading} from '../stores/podcast.slice'
 
 export const SearchPodcastView = () => {
     const [searchTerm, setSearchTerm] = useState('');
-    const results = useQuery(["podcasts"], fetchPodcastList);
+    const { data, isLoading} = useQuery(["podcasts"], fetchPodcastList);
     const dispatch = useDispatch();
     
+    useEffect(() => {
+        dispatch(setLoading(isLoading))
+      },[isLoading])
     // update podcasts on change
-    const podcasts = useMemo(() => {
-      dispatch(setLoading(true))
-      if (results.isLoading) {
-        return [];
-      }
-      const data = results?.data?.contents || "[]";
-      const feed = JSON.parse(data);
-      dispatch(setLoading(false))
-      return filterPodcasts(feed.feed.entry, searchTerm);
-    }, [results, searchTerm]);
+    const podcasts = useMemo(() => data ? filterPodcasts(data, searchTerm) : [], [data, searchTerm]);
     
     return (
         <Fragment>

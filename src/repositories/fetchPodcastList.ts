@@ -1,22 +1,23 @@
+import { cacheQuery } from "../helpers/cache-query.helper";
+
 // https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/json
 type QueryKey = {
   queryKey: any[];
 };
 
 const fetchPodcastList = async ({ queryKey }: QueryKey) => {
-  const apiRes = await fetch(
+  const result = await cacheQuery(
+    fetch,
     `https://api.allorigins.win/get?url=${encodeURIComponent(
       "https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/json"
-    )}`
+    )}`,
+    "podcastList"
   );
   //const apiRes = await fetch("src/assets/data.json");
 
-  if (!apiRes.ok) {
-    // here there must be a better error handler based on response status
-    throw new Error(`Error retrieving top 100 podcasts`);
-  }
-
-  return apiRes.json();
+  const contents = result?.contents || "[]";
+  const data = JSON.parse(contents);
+  return data?.feed?.entry || [];
 };
 
 export default fetchPodcastList;

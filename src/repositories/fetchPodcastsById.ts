@@ -1,3 +1,5 @@
+import { cacheQuery } from "../helpers/cache-query.helper";
+
 // https://itunes.apple.com/lookup?id=934552872&media=podcast&entity=podcastEpisode&limit=20
 type QueryKey = {
   queryKey: any[];
@@ -5,19 +7,14 @@ type QueryKey = {
 
 const fetchPodcastById = async ({ queryKey }: QueryKey) => {
   const id = queryKey[1];
-  const apiRes = await fetch(
+  const result = await cacheQuery(
+    fetch,
     `https://api.allorigins.win/get?url=${encodeURIComponent(
       `https://itunes.apple.com/lookup?id=${id}&media=podcast&entity=podcastEpisode&limit=20`
-    )}`
+    )}`,
+    id
   );
-  //const apiRes = await fetch("src/assets/data.json");
-
-  if (!apiRes.ok) {
-    // here there must be a better error handler based on response status
-    throw new Error(`Error retrieving podcasts '${id}' podcast`);
-  }
-
-  return apiRes.json();
+  return JSON.parse(result?.contents || "null")?.results || null;
 };
 
 export default fetchPodcastById;
