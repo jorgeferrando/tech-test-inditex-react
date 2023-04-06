@@ -11,13 +11,13 @@ export const PodcastItem = ({podcast} : PodcastProps) => {
     const dispatch = useDispatch()
     return (
         <Link to={`/podcast/${podcast.id.attributes['im:id']}`}>
-        <article className="podcast-item" onClick={() => dispatch(selectPodcast(podcast))}>
-            <img src={podcast['im:image'][0].label} />
-            <div className="podcast-info">
-                <section className="title">{podcast['im:name'].label}</section>
-                <section className="author">Author: {podcast['im:artist'].label}</section>
-            </div>
-        </article>
+            <article className="podcast-item" onClick={() => dispatch(selectPodcast(podcast))}>
+                <img src={podcast['im:image'][0].label} />
+                <div className="podcast-meta">
+                    <section className="title">{podcast['im:name'].label}</section>
+                    <section className="author">Author: {podcast['im:artist'].label}</section>
+                </div>
+            </article>
         </Link>
     )
 }
