@@ -12,8 +12,9 @@ const fetchPodcastById = async ({ queryKey }: QueryKey) => {
     `https://api.allorigins.win/get?url=${encodeURIComponent(
       `https://itunes.apple.com/lookup?id=${id}&media=podcast&entity=podcastEpisode&limit=20`
     )}`,
-    id
+    `podcast-${id}`
   );
+  console.log(JSON.parse(result?.contents));
   return JSON.parse(result?.contents || "null")?.results || null;
 };
 
