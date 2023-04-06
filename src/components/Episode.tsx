@@ -1,14 +1,7 @@
 import {default as dompurify} from 'dompurify';
 
 import './Episode.sass';
-
-function convertUrlsToLinks(str: string): string {
-    const urlRegex = /(https?:\/\/[^\s]+)/g;
-    return str.replace(urlRegex, '<a href="$1">$1</a>');
-}
-function replaceNewlinesWithBr(str: string): string {
-    return str.replace(/\n/g, '<br/>');
-}
+import { convertUrlsToLinks, replaceNewlinesWithBr } from '../helpers/html.helper';
 
 type Props = {
     episode: any;
