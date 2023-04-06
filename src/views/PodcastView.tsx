@@ -15,17 +15,18 @@ export const PodcastView = () => {
     const { podcastId } = useParams();
     const podcastList = useQuery(["podcasts"], fetchPodcastList);
     const {data, isLoading} = useQuery(["podcast", podcastId], fetchPodcastById);
-    const podcastFromStore = useSelector(state => state.podcasts.selectedPodcast);
+
     useEffect(() => {
       dispatch(setLoading(isLoading || podcastList.isLoading))
     },[isLoading, podcastList.isLoading])
+    
     const episodesList = useMemo(() => data ? data : null, [data]);
-    // in case we go direct insde the podcast view
     const podcast = useMemo(() => {
-      return podcastFromStore || (
+      return (
         podcastList?.data?.find((p: any) => p.id.attributes['im:id'] === podcastId) || null
       );
-    }, [podcastFromStore, podcastList.data])
+    }, [podcastList.data])
+    
     return (
         <div className="entitylayout">
           {podcast && <PodcastDetails podcast={podcast}></PodcastDetails>}

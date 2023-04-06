@@ -6,7 +6,7 @@ type Props = {
     children: JSX.Element
 }
 export const MainLayout = ({ children } : Props) => {
-    const loading = useSelector(state => state.podcasts.loading);
+    const loading = useSelector(state => state.loader.value);
     return (
         <Fragment>
             <nav className="navigation-bar">

@@ -23,9 +23,9 @@
                 text-align: center
             tbody
                 tr:nth-child(odd)
-                    background-color: #eee
+                    background-color: variables.$odd-rows-background-color
             th
-                border-bottom: 2px solid #ddd
+                @include mixins.default-border(2)
                 padding: calc(variables.$default-padding / 2)
             td
                 padding: calc(variables.$default-padding / 2)

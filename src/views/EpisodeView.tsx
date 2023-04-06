@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { PodcastDetails } from '../components/PodcastDetail';
 import fetchPodcastList from '../repositories/fetchPodcastList';
@@ -13,17 +13,16 @@ export const EpisodeView = () => {
     const { podcastId, episodeId } = useParams();
     const episodeList = useQuery(["podcasts"], fetchPodcastList);
     const {data, isLoading} = useQuery(["episode", podcastId, episodeId], fetchEpisodeById);
-    const podcastFromStore = useSelector(state => state.podcasts.selectedPodcast);
     useEffect(() => {
       dispatch(setLoading(isLoading || episodeList.isLoading))
     },[isLoading, episodeList.isLoading])
     const episode = useMemo(() => data ? data : null, [data]);
     // in case we go direct insde the podcast view
     const podcast = useMemo(() => {
-      return podcastFromStore || (
+      return (
         episodeList?.data?.find((p: any) => p.id.attributes['im:id'] === podcastId) || null
       );
-    }, [podcastFromStore, episodeList.data])
+    }, [episodeList.data])
     return (
         <div className="entitylayout">
           {podcast && <PodcastDetails podcast={podcast}></PodcastDetails>}

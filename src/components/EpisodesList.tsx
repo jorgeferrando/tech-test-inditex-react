@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom'
-import { useDispatch } from 'react-redux';
 import { duration, formatDate } from '../helpers/format.helper';
 
 import './EpisodesList.sass'
@@ -9,7 +8,6 @@ type Props = {
 };
 
 export const EpisodesList = ({episodesList} : Props) => {
-    const dispatch = useDispatch()
     return (
         <section className="episodes">
             <h2>{episodesList[0].collectionName}</h2>
