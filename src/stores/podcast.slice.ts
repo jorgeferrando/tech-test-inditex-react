@@ -5,8 +5,7 @@ export const podcastSlice = createSlice({
   initialState: {
     loading: false,
     selectedPodcast: null,
-    podcastDetails: null,
-    selectedEpisode: null,
+    podcastDetails: null
   },
   reducers: {
     setLoading: (state, action) => {
@@ -17,16 +16,12 @@ export const podcastSlice = createSlice({
     },
     setPodcastDetails: (state, action) => {
       state.podcastDetails = action.payload;
-    },
-    selectEpisode: (state, action) => {
-      state.selectedEpisode = action.payload;
-    },
+    }
   },
 });
 export const {
   setLoading,
   selectPodcast,
-  selectEpisode,
   setPodcastDetails
 } = podcastSlice.actions;
 export default podcastSlice.reducer;
