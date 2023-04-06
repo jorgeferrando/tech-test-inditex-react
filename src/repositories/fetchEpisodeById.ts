@@ -17,7 +17,7 @@ const fetchEpisodeById = async ({ queryKey }: QueryKey) => {
   );
   console.log(JSON.parse(result?.contents));
   const podcasts = JSON.parse(result?.contents || "null")?.results;
-  const episode = podcasts.find(p => p.episodeGuid === episodeId);
+  const episode = podcasts.find((p) => p.trackId === +episodeId);
   return episode;
 };
 
