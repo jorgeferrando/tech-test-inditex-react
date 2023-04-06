@@ -8,9 +8,11 @@ type Props = {
 };
 
 export const EpisodesList = ({episodesList} : Props) => {
+    const title = episodesList && episodesList[0].collectionName;
+    const episodes = episodesList && episodesList.slice(1);
     return (
         <section className="episodes">
-            <h2>{episodesList[0].collectionName}</h2>
+            <h2 data-testid="title">{title}</h2>
             <section className="episodes__container">
                 <table>
                     <thead>
@@ -21,9 +23,9 @@ export const EpisodesList = ({episodesList} : Props) => {
                         </tr>
                     </thead>
                     <tbody>
-                    {episodesList && episodesList.slice(1).map((episode: any) => {
+                    {episodes && episodes.map((episode: any) => {
                             return (
-                                <tr key={episode.trackId}>
+                                <tr data-testid="episode-row" key={episode.trackId}>
                                     <td className="align-left">
                                         <Link to={`episode/${episode.trackId}`}>{episode.trackName}</Link>
                                     </td>
