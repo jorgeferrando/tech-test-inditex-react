@@ -1,5 +1,5 @@
 import { expect, describe, it, beforeAll, afterAll } from 'vitest';
-import { render } from '@testing-library/react';
+import { RenderResult, render } from '@testing-library/react';
 import { StaticRouter } from 'react-router-dom/server';
 import { PodcastItem } from '../../components/PodcastItem';
 import { podcastMock } from './Podcast.mock';
@@ -7,7 +7,7 @@ import { podcastMock } from './Podcast.mock';
 const podcast = podcastMock;
 
 describe('PodcastItem', async () => {
-    let podcastItem: any;
+    let podcastItem: RenderResult;
     beforeAll(() => {
         podcastItem = render(
             <StaticRouter location={`/`}>
