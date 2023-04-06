@@ -1,6 +1,6 @@
 import { cacheQuery } from "../helpers/cache-query.helper";
+import { Episode } from "../models/episode.model";
 
-// https://itunes.apple.com/lookup?id=934552872&media=podcast&entity=podcastEpisode&limit=20
 type QueryKey = {
   queryKey: any[];
 };
@@ -15,9 +15,8 @@ const fetchEpisodeById = async ({ queryKey }: QueryKey) => {
     )}`,
     `podcast-${podcastId}`
   );
-  console.log(JSON.parse(result?.contents));
-  const podcasts = JSON.parse(result?.contents || "null")?.results;
-  const episode = podcasts.find((p) => p.trackId === +episodeId);
+  const episodes = JSON.parse(result?.contents || "null")?.results;
+  const episode = episodes.find((e: Episode) => e.trackId === +episodeId);
   return episode;
 };
 

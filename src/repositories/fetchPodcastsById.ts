@@ -5,7 +5,7 @@ type QueryKey = {
   queryKey: any[];
 };
 
-const fetchPodcastById = async ({ queryKey }: QueryKey) => {
+const fetchEpisodes = async ({ queryKey }: QueryKey) => {
   const id = queryKey[1];
   const result = await cacheQuery(
     fetch,
@@ -18,4 +18,4 @@ const fetchPodcastById = async ({ queryKey }: QueryKey) => {
   return JSON.parse(result?.contents || "null")?.results || null;
 };
 
-export default fetchPodcastById;
+export default fetchEpisodes;

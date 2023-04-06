@@ -2,11 +2,13 @@ import { Fragment } from 'react';
 import './MainLayout.sass'
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { LoaderState } from '../stores/podcast.slice';
+
 type Props = {
     children: JSX.Element
 }
 export const MainLayout = ({ children } : Props) => {
-    const loading = useSelector(state => state.loader.value);
+    const loading = useSelector((state: LoaderState) => state.loader.value);
     return (
         <Fragment>
             <nav className="navigation-bar">
