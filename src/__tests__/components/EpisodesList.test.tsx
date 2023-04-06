@@ -1,7 +1,7 @@
 import { expect, describe, it, beforeAll, afterAll } from 'vitest';
 import { RenderResult, render } from '@testing-library/react';
 import { StaticRouter } from 'react-router-dom/server';
-import { episodesListMock } from './EpisodesList.mock';
+import { episodesListMock } from '../mocks/EpisodesList.mock';
 import { EpisodesList } from '../../components/EpisodesList';
 
 const episodes = episodesListMock;

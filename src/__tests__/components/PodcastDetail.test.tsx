@@ -1,7 +1,7 @@
 import { expect, describe, it, beforeAll, afterAll } from 'vitest';
 import { RenderResult, render } from '@testing-library/react';
 import { StaticRouter } from 'react-router-dom/server';
-import { podcastMock } from './Podcast.mock';
+import { podcastMock } from '../mocks/Podcast.mock';
 import { PodcastDetails } from '../../components/PodcastDetail';
 
 const podcast = podcastMock;
