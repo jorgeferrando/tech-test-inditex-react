@@ -14,7 +14,9 @@ const fetchEpisodes = async ({ queryKey }: QueryKey) => {
     )}`,
     `podcast-${id}`
   );
-  return JSON.parse(result?.contents || "null")?.results || null;
+  const episodes = JSON.parse(result?.contents || "null");
+  const results = episodes.results;
+  return results || null;
 };
 
 export default fetchEpisodes;

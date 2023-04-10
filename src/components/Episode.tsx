@@ -11,7 +11,7 @@ export const Episode = ({episode} : Props) => {
     return (
         <section className="episodes">
             <h2 data-testid="title">{episode.trackName}</h2>
-            <div className="episodes__description"
+            <div className="episodes__description" data-testid="description"
                  dangerouslySetInnerHTML={{__html:dompurify.sanitize(description)}}>
             </div>
             <audio controls>

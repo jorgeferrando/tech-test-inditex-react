@@ -41,11 +41,6 @@ export const cacheQuery = async (
   const cachedValue = JSON.parse(cachedData);
   const isExpired =
     +cachedValue.time + config.expirationTimeInMillis < new Date().getTime();
-  console.log({
-    cachedValueTime: cachedValue.time,
-    cacheTime: +cachedValue.time + config.expirationTimeInMillis,
-    today: new Date().getTime(),
-  });
   if (!isExpired) {
     return cachedValue.data;
   }
